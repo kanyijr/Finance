@@ -3,7 +3,7 @@ import "../styles/pages/Settings.css"
 const Settings = () => {
   return (
     <div>
-      
+      Settings
     </div>
   )
 }

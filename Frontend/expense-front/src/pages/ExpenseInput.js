@@ -3,7 +3,7 @@ import "../styles/pages/ExpenseInput.css"
 const ExpenseInput = () => {
   return (
     <div>
-      
+      ExpenseInput
     </div>
   )
 }

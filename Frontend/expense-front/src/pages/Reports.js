@@ -3,7 +3,7 @@ import "../styles/pages/Reports.css"
 const Reports = () => {
   return (
     <div>
-      
+      Reports
     </div>
   )
 }

@@ -3,7 +3,7 @@ import "../styles/pages/Profile.css"
 const Profile = () => {
   return (
     <div>
-      
+      Profile
     </div>
   )
 }

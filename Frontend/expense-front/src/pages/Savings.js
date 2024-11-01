@@ -3,7 +3,7 @@ import "../styles/pages/Savings.css"
 const Savings = () => {
   return (
     <div>
-      
+      Savings
     </div>
   )
 }

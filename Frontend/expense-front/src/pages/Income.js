@@ -3,7 +3,7 @@ import "../styles/pages/Income.css"
 const Incomes = () => {
   return (
     <div>
-      
+      Income
     </div>
   )
 }
