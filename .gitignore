@@ -1,0 +1,39 @@
+# General
+*.log
+*.pot
+*.pyc
+*.pyo
+__pycache__/
+db.sqlite3
+.DS_Store
+
+# Django
+/media/
+*.py[cod]
+*.sqlite3
+*.env
+
+# Django Migrations
+*/migrations/*
+!*/migrations/__init__.py
+
+# Virtual Environments
+venv/
+env/
+
+# Frontend - React
+node_modules/
+build/
+dist/
+*.cache
+.npm/
+*.eslintcache
+
+# IDE Specific
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# macOS Specific
+*.DS_Store
