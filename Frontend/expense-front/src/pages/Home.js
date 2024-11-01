@@ -1,8 +1,14 @@
 import React from 'react'
 import "../styles/pages/Home.css"
+
+
+
+
 const Home = () => {
   return (
     <div>
+      
+   
       Home
       
     </div>

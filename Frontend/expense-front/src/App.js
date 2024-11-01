@@ -14,14 +14,14 @@ import Register from './pages/Register'
 import Reports from './pages/Reports'
 import Savings from './pages/Savings'
 import Settings from './pages/Settings'
-import Navbar from './components/Navbar.Js'
+import Navbar from './components/Navbar'
 
 
 function App() {
   return (
     <Router> 
       <div className="App">
-          <Navbar/>
+      <Navbar />
           <Routes>
             <Route exact path="/"  element={<Home/>} />
             <Route path="/expenses/input" element={<ExpenseInput/>} />

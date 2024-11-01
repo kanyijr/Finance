@@ -1,12 +1,17 @@
 import React from 'react'
 import "../styles/components/Navbar.css"
+import { useNavigate, Link, useLocation } from 'react-router-dom';
+
 
 const Navbar = () => {
   return (
-    <div>
-      <h1>Navbar</h1>
-    </div>
+    <nav>
+      <div>
+        <p>Hey</p>
+      </div>
+
+    </nav>
   )
-}
+};
 
 export default Navbar
