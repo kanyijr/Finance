@@ -2,16 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class UserProfile:
+class UserProfile(models.Model):
     # profile info is optional so the user can skip the profile section on signup
     card_number = models.CharField(max_length=200, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=200, null=True)
+    phone_number = models.CharField(max_length=200, null=True)
+
 
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.TextField()
+
+    class Meta:
+        verbose_name = "Categorie"
 
 class Expense(models.Model):
     expense_id = models.AutoField(primary_key=True)
@@ -42,16 +47,16 @@ class SavingAccount(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     class Meta: 
-        verbose_name = "Savings Accounts"
+        verbose_name = "Savings Account"
 
 class Saving(models.Model):
-    savings_account = models.ForeignKey(SavingAccount)
+    savings_account = models.ForeignKey(SavingAccount, on_delete=models.CASCADE)
     deposit_amount = models.DecimalField(decimal_places=10, max_digits=10)
     deposit_date = models.DateField()
 
     class Meta:
         ordering = ["-deposit_date"]
-        verbose_name = "Savings"
+        verbose_name = "Saving"
 
 class Budget(models.Model):
     budget_id = models.AutoField(primary_key=True)
