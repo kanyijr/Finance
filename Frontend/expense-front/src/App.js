@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+
 // page imports
 import Budget from './pages/Budget'
 import ExpenseInput from './pages/ExpenseInput'
@@ -15,6 +16,7 @@ import Reports from './pages/Reports'
 import Savings from './pages/Savings'
 import Settings from './pages/Settings'
 import Navbar from './components/Navbar'
+import "./styles/global.css"
 
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
             <Route path="/expenses/list" element={<Expenses/>} />
             <Route path="/income/input" element={<IncomeInput/>} />
             <Route path="/income/list" element={<Income/>} />
-            <Route path="/savings/goals" element={<Savings/>} />
+            <Route path="/savings" element={<Savings/>} />
             <Route path="/budgeting" element={<Budget/>} />
             <Route path="/reports" element={<Reports/>} />
             <Route path="/profile" element={<Profile/>} />

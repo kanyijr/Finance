@@ -1,0 +1,62 @@
+.Navbar__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1200px;
+    padding: .5em 0em;
+}
+
+.Navbar__container-middle-links{
+    gap: 2em;
+}
+.Navbar__container-middle-links-link:hover{
+    color: var(--color-gray);
+    cursor: pointer;
+}
+.Navbar__container-right-cta{
+    gap:0.5em;
+}
+.Navbar__cta-login, .Navbar__cta-signup{
+    outline: none;
+    border: none;
+    padding: .5em .8em;
+    border-radius: 1rem;
+}
+.Navbar__cta-login{
+    background-color: var(--color-blue);
+    color: white;
+    transition: all .3s ease-in-out;
+}
+.Navbar__cta-login:hover{
+    cursor: pointer;
+    background-color: var(--color-emerald);
+}
+.Navbar__cta-signup{
+    background-color: white;
+    border: .5px solid black;
+    transition: all .3s ease-in-out;
+}
+.Navbar__cta-signup:hover{
+    background-color: black;
+    cursor: pointer;
+    color: white;
+    border: none;
+}
+.Navbar__cta-signout{
+    background-color: var(--color-pink);
+    color: white;
+    padding: .5em .8em;
+    border-radius: 1rem;
+    outline: none;
+    border: none;
+    transition: all .3s ease-in-out;
+}
+.Navbar__cta-signout:hover{
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    color: black
+}
+

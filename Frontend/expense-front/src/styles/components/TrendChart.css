@@ -1,0 +1,11 @@
+.Trend{
+    background-color: white;    
+    padding: 1em;
+    border-radius: 1rem;
+    transition: all .3s ease-in-out;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.Trend:hover{
+    cursor: pointer;
+    transform: scale(1.01, 1.01);
+}

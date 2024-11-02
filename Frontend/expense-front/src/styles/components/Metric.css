@@ -1,0 +1,30 @@
+.Metric-card{   
+    padding: 1em;
+    flex: 1;
+    border-radius: 1rem;
+    color: white;
+    transition: all .3s ease-in-out;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+.Metric-card:hover{
+    transform: scale(1.01, 1.01);
+    cursor: pointer;
+}
+.Metric-card__body{
+    font-size: 1.2rem;
+}
+.Metric-card__header{
+    margin-bottom: 1em;
+}
+.Metric-card__header i{
+    font-size: 1.2rem;
+}
+.red{
+    background-color: red;
+}
+.emerald{
+    background-color: var(--color-emerald);
+}
+.blue{
+    background-color: var(--color-blue);
+}

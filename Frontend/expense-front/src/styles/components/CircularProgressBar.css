@@ -1,0 +1,32 @@
+.CircularProgressBar {
+    transform: rotate(-90deg); /* Rotate to start the circle from the top */
+  }
+  
+  .CircularProgressBar-Background {
+    fill: none;
+    stroke: #e6e6e6; /* Light grey background */
+    stroke-width: 10;
+  }
+  
+  .CircularProgressBar-Progress {
+    fill: none;
+    /* Green color for progress */
+    stroke-width: 10;
+   
+    stroke-linecap: round; /* Rounded ends for the progress stroke */
+    transition: stroke-dashoffset 0.3s ease; /* Smooth transition */
+  }
+  .red{
+     stroke: red;
+  }
+  .green{
+    stroke: #4caf50;
+  }
+  
+  .CircularProgressBar-Text {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    fill: #333; /* Text color */
+  }
+  

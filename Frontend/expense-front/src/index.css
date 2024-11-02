@@ -1,0 +1,109 @@
+/* boilerplay code */
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+   color: inherit;
+}
+
+/* typography classes */
+.roboto-light {
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+  
+.roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.roboto-medium {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+  
+.roboto-bold {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+  
+.open-sans-light {
+    font-family: "Open Sans", serif;
+    font-weight: 300;
+    font-style: normal;
+   
+}
+.open-sans-regular {
+    font-family: "Open Sans", serif;
+    font-weight: 400;
+    font-style: normal;
+   
+}
+  
+.open-sans-medium {
+    font-family: "Open Sans", serif;
+    font-weight: 500;
+    font-style: normal;
+   
+}
+  
+.open-sans-semi-bold {
+    font-family: "Open Sans", serif;
+    font-weight: 600;
+    font-style: normal;
+   
+}
+.open-sans-bold {
+    font-family: "Open Sans", serif;
+    font-weight: 700;
+    font-style: normal;
+   
+}
+
+/* utility classes */
+    /* colors */
+:root {
+    --color-emerald: #10B981;
+    --color-blue: #3B82F6;
+    --color-purple: #8B5CF6;
+    --color-pink: #EC4899;
+    --color-orange: #F97316;
+    --color-gray: #6B7280;
+}
+    
+.bg-emerald{
+    background-color: #10b981;
+}
+.bg-blue{
+    background-color: #3B82F6;
+}
+.bg-purple{
+    background-color: #8B5CF6;
+}
+.bg-pink{
+    background-color: #EC4899;
+}
+.bg-orange{
+    background-color: #F97316;
+}
+.bg-gray{
+    background-color: #6B7280;
+}
+    /* layout */
+.u-d-flex{
+    display: flex;
+}
+.u-d-hidden{
+    display: none;
+}
+
+
+  
+

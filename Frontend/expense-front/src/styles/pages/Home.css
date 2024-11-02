@@ -1,0 +1,117 @@
+.Home{
+    margin-top: 1em;
+    width: 100vw;
+    height: 100vh;
+    overflow-x:hidden;
+    background-color: #eff1ff;
+}
+.Home__title{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    
+}
+.Home__container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1em 0em;
+
+}
+.Home__plus-cta{
+    position: absolute;
+    bottom: 10%;
+    background-color: var(--color-purple);
+    padding: 1em;
+    border-radius: 50%;
+    right: 0; 
+    transition: all .3s ease-in-out; 
+}
+.Home__plus-cta i{
+    color: white;
+    font-size: 2rem;
+}
+.Home__plus-cta:hover{
+    cursor: pointer;
+    background-color: black;
+}
+.Home__greeting{
+    text-align: start;
+    color: var(--color-gray);
+    font-size: .8rem;
+    margin-bottom: 1em;
+}
+.Home__metrics{
+    gap: 2em;
+    justify-content: space-between;
+    margin-bottom: 5em;
+    
+}
+.Home__score{
+    background-color: white;
+    padding: 2em;
+    border-radius: 1rem;
+    gap: 5em;
+   
+    margin: 0 auto;
+    transition: all .3s ease-in-out;
+    margin-bottom: 3em;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.Home__score:hover{
+    cursor: pointer;
+    transform: scale(1.01, 1.01);
+}
+
+.Home__score-right{
+    font-family: "Poppins", sans-serif;
+}
+.Home__score-right h1{
+    margin-bottom: 1em;
+}
+.Home__score-right-stars{
+    gap: 1em;
+}
+.Home__score-right-stars i{
+    color: rgb(245, 208, 107);
+    font-size:2.5rem;
+}
+.Home__plus-modal{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    outline: 1000px solid rgba(0, 0, 0, 0.5);
+    background-color: white;
+    padding: 2em 1em;
+    font-family: "Poppins", sans-serif;
+    border-radius: 1rem;
+}
+.Home__plus-modal-close {
+    position: relative;
+    right: 0px;
+}
+.Home__plus-modal-close:hover{
+    cursor: pointer;
+}
+.Home__plus-modal-action{
+    display: flex;
+    margin-bottom: 2em;
+    font-size: 2rem;
+    gap: .5em;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    padding: .2em;
+}
+.Home__plus-modal-action:hover{
+    background-color: rgba(197, 213, 248, 0.5);
+    cursor: pointer;
+}
+.Home__plus-modal-action-icon{
+    background-color: var(--color-purple);
+    padding: .5em;
+    border-radius: 50%;
+    color: white;
+}
