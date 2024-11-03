@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import "../styles/pages/Login.css";
 import {Link, useNavigate} from 'react-router-dom'
 import Context from '../utils/Context'
@@ -11,7 +11,7 @@ const Login = () => {
     }
   )
   const history = useNavigate()
-  const {setFirstName, setIsAuthenticated, setUserName} = useContext(Context)
+  const {setFirstName, setIsAuthenticated, setUserName, saveToLocalStorage, isAuthenticated} = useContext(Context)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
@@ -34,6 +34,7 @@ const Login = () => {
       setFirstName(data.firstName)
       setIsAuthenticated(true)
       setUserName(data.email)
+      saveToLocalStorage("userData",JSON.stringify({firstName:data.firstName, userName:data.email}))
       history("/")
     }catch(error){
       console.error("Error: ", error)
@@ -46,6 +47,13 @@ const Login = () => {
       [name]: value,
     });
   };
+
+  useEffect(()=>{
+    if(isAuthenticated){
+      console.log(isAuthenticated)
+      history("/")
+    }
+  },[isAuthenticated])
 
   return (
     <div className='Login-Overlay'>

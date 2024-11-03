@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import "../styles/pages/Register.css";
 import { Link, useNavigate } from 'react-router-dom';
 import Context from '../utils/Context'
@@ -13,7 +13,7 @@ const Register = () => {
     phoneNumber: '',
     countryCode: '+1', // Default country code
   });
-  const {setFirstName, setIsAuthenticated, setUserName} = useContext(Context)
+  const {setFirstName, setIsAuthenticated, setUserName, isAuthenticated} = useContext(Context)
   const history = useNavigate()
 
   const [errors, setErrors] = useState({});
@@ -102,7 +102,12 @@ const Register = () => {
       console.error('Error:', error);
     }
   };
-
+  useEffect(()=>{
+    if(isAuthenticated){
+      console.log(isAuthenticated)
+      history("/")
+    }
+  },[isAuthenticated])
   return (
     <div className='Register-Overlay'>
       <div className='Register-Wrapper'>

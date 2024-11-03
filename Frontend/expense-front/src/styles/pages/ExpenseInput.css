@@ -1,0 +1,65 @@
+.ExpenseInput-Wrapper {
+    position:absolute;
+    top: 30%;
+    right: 30%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .ExpenseInput-Title {
+    text-align: center;
+    color: #4f46e5; /* Purple accent */
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .ExpenseInput-Form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ExpenseInput-Form__Field {
+    margin-bottom: 15px;
+  }
+  
+  .ExpenseInput-Form__Label {
+    margin-bottom: 5px;
+    color: #10b981; /* Emerald accent */
+    font-weight: bold;
+    margin-right: 2em;
+  }
+  
+  .ExpenseInput-Form__Input,
+  .ExpenseInput-Form__Textarea {
+    padding: 10px;
+    border: 1px solid #cbd5e1; /* Light border */
+    border-radius: 4px;
+    font-size: 16px;
+    outline-color: #3b82f6; /* Blue accent */
+  }
+  
+  .ExpenseInput-Form__Textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .ExpenseInput-Form__Button {
+    background-color: #3b82f6; /* Blue accent */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .ExpenseInput-Form__Button:hover {
+    background-color: #2563eb; /* Darker blue accent */
+  }
+  

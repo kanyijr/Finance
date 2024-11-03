@@ -4,10 +4,10 @@ import { useNavigate, Link, useLocation} from 'react-router-dom';
 import Context from '../utils/Context'
 
 const Navbar = () => {
-  const {isAuthenticated, setIsAuthenticated} = useContext(Context);
+  const {isAuthenticated, setIsAuthenticated, signOut} = useContext(Context);
   const history = useNavigate()
   const handleSignOut = ()=>{
-    setIsAuthenticated(false)
+    signOut()
     history("/login")
   }
   return (
@@ -15,7 +15,9 @@ const Navbar = () => {
       <div className='Navbar__container u-d-flex'>
         <div className='Navbar__container-left'>
           <div className='Navbar__container-left-logo'>
-            <h1 className='open-sans-medium'>Froogol</h1>
+            <Link to={"/"}>
+              <h1 className='open-sans-medium'>Froogol</h1>
+            </Link>
           </div>          
         </div>
         <div className='Navbar__container-middle '>

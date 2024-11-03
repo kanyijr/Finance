@@ -9,7 +9,7 @@ import TrendChart from '../components/TrendChart'
 
 
 const Home = () => {
-  const {firstname, setFirstName, frugalScore, setFrugalScore, isAuthenticated} = useContext(Context)
+  const {firstname, setFirstName, frugalScore, setFrugalScore, isAuthenticated, fetchUserFinancialData, userFinancialData} = useContext(Context)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const numStars = parseInt((frugalScore/100)*5)
   const history = useNavigate();
@@ -20,9 +20,15 @@ const Home = () => {
     // Add more data as needed
   ];
   useEffect(()=>{
-    if(!isAuthenticated){
+    console.log(!isAuthenticated)
+    if(isAuthenticated==false){
       history("/login")
     }
+    
+
+  },[isAuthenticated])
+  useEffect(()=>{
+    fetchUserFinancialData()
   }, [])
 
   const handleCloseModal = ()=>{
@@ -41,13 +47,13 @@ const Home = () => {
         <h1 className='Home__title'>Dashboard</h1>
         <div className='Home__metrics u-d-flex'>
 
-            <Metric bgColor={"emerald"} value={2000} title={"Total Income"} icon={"bi-cash-coin"} dest={"/income/list"}/>
+            <Metric bgColor={"emerald"} value={userFinancialData?userFinancialData.income:0} title={"Total Income"} icon={"bi-cash-coin"} dest={"/income/list"} prefix={"Ksh. "}/>
        
        
-            <Metric bgColor={"red"} value={1000} title={"Total Expenses"} icon={"bi-graph-down-arrow"} dest={"expenses/list"}/>
+            <Metric bgColor={"red"} value={userFinancialData?userFinancialData.expenses:0} title={"Total Expenses"} icon={"bi-graph-down-arrow"} dest={"expenses/list"} prefix={"Ksh. "}/>
       
 
-            <Metric bgColor={"blue"} value={30000} title={"Total Savings"} icon={"bi-briefcase"} dest={"/savings"}/>
+            <Metric bgColor={"blue"} value={userFinancialData?userFinancialData.savings:0} title={"Total Savings"} icon={"bi-briefcase"} dest={"/savings"} prefix={"Ksh. "}/>
         
         </div>
         <div className='Home__score u-d-flex'>
@@ -76,16 +82,16 @@ const Home = () => {
      
 
       <div className='Home__plus-cta' onClick={handleOpenModal}>
-      <i class="bi bi-plus-lg"></i>
+      <i className="bi bi-plus-lg"></i>
       </div>
       <div className={`Home__plus-modal ${isModalOpen ? '' : 'u-d-hidden'}`}>
         <div className='Home__plus-modal-close' onClick={handleCloseModal}>
-          <i class="bi bi-x-lg"></i>
+          <i className="bi bi-x-lg"></i>
         </div>
         <Link to={"/income/input"}>
           <div className='Home__plus-modal-action'>          
             <div className='Home__plus-modal-action-icon'> 
-            <i class="bi bi-cash-coin"></i>
+            <i className="bi bi-cash-coin"></i>
             </div>
             <p>Add Income</p>
           </div>
@@ -93,7 +99,7 @@ const Home = () => {
         <Link to={"/savings"}>
           <div className='Home__plus-modal-action'>
             <div className='Home__plus-modal-action-icon'> 
-            <i class="bi bi-bank"></i>
+            <i className="bi bi-bank"></i>
             </div>
             <p>Save</p>
           </div>
@@ -101,7 +107,7 @@ const Home = () => {
         <Link to={"/expenses/input"}>
           <div className='Home__plus-modal-action'>
             <div className='Home__plus-modal-action-icon'> 
-            <i class="bi bi-clipboard"></i>
+            <i className="bi bi-clipboard"></i>
             </div>
             <p>Record Expense</p>
           </div>

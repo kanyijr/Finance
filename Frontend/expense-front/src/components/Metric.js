@@ -2,7 +2,7 @@ import React from 'react'
 import "../styles/components/Metric.css"
 import { Link } from 'react-router-dom';
 
-const Metric = ({bgColor, title, value, icon, dest}) => {
+const Metric = ({bgColor, title, value, icon, dest, prefix}) => {
     const convertToString = (number) => {
         if (typeof number !== 'number') {
           throw new Error('Input must be a number');
@@ -16,10 +16,10 @@ const Metric = ({bgColor, title, value, icon, dest}) => {
       <Link to={dest}>
         <div className='Metric-card__header'>
             <p className='Metric-card__header-title'>{title}</p>
-            <i class={`bi ${icon}`}></i>
+            <i className={`bi ${icon}`}></i>
         </div>
         <div className='Metric-card__body open-sans-semi-bold'>
-            Ksh. {convertToString(value)}
+            {prefix}{convertToString(value)}
 
         </div>
       </Link>

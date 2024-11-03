@@ -1,6 +1,6 @@
 .Metric-card{   
     padding: 1em;
-    flex: 1;
+    
     border-radius: 1rem;
     color: white;
     transition: all .3s ease-in-out;
@@ -19,12 +19,26 @@
 .Metric-card__header i{
     font-size: 1.2rem;
 }
+.cyan {
+    /* background: linear-gradient(to bottom, rgba(0, 255, 255, 0.5), rgba(0, 0, 255, 0.2)); */
+    background-color: rgba(34, 76, 214, 1);
+    flex: 1;
+}
+
+.bluegreen{
+    background-color: rgb(12, 144, 231);
+    flex: 1;
+}
+
 .red{
     background-color: red;
+    flex: 1;
 }
 .emerald{
     background-color: var(--color-emerald);
+    flex: 1;
 }
 .blue{
     background-color: var(--color-blue);
+    flex: 1;
 }

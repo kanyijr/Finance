@@ -1,0 +1,86 @@
+.SavingCard{
+    background-color: white;
+    color:black;
+    padding: 1em;
+    max-width: 500px;
+    border-radius: 1rem;
+    font-family: "Poppins", sans-serif;
+    transition: all .3s ease-in-out;
+}
+.SavingCard:hover{
+    cursor: pointer;
+    transform: scale(1.01, 1.01);
+}
+.SavingCard__body-progress{
+    height: 8px;
+    background-color: rgb(170, 168, 168, 1);
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #E9ECEF;
+}
+.SavingCard__body-progress-bar{
+    height: 100%;
+    background-color: #00B4D8;
+    border-radius: 4px;
+    width: 50%;
+}
+.SavingCard__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+    gap: 1em;
+}
+.SavingCard__header-title{
+    color: #1a1a1a;
+}
+.SavingCard__header-date{
+    color: rgb(94, 91, 91);
+    font-weight: 300;
+}
+.SavingCard__body-goal-amount{
+    display: flex;
+    justify-content: space-between;
+}
+.SavingCard__body-progress-status{
+    position: relative;
+    right: 0;
+}
+.SavingCard__body-cta-btn{
+    padding: .5em 1em;
+    outline: none;
+    border: none;
+    border-radius: .4rem;
+    transition: 11 .2s ease-in-out;
+    background-color: #E0FEFF;
+    color:  #0096C7;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    margin-right: 2em;
+}
+.SavingCard__body-cta-btn:hover{
+    background-color:#CCF8FA ;
+}
+.SavingCard__body-cta-btn + .SavingCard__body-cta-btn{
+    background-color: #F0F4FF;
+    color: #4361EE;
+    cursor: pointer;
+    font-weight: 500;
+}
+.SavingCard__body-cta-btn + .SavingCard__body-cta-btn:hover{
+    background-color: #E6EBFF;
+}
+.SavingCard__body-goal-amount{
+    color: rgba(94, 91, 91, 1);
+    font-size: .9rem;
+    margin-bottom: .5em;
+}
+.SavingCard__body-progress{
+    margin-bottom: .2em;
+       
+}
+.SavingCard__body-progress-status{
+    margin-bottom: .5em;
+    color: rgba(94, 91, 91, 1);
+    font-size: .8rem;
+}

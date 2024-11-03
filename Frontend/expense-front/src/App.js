@@ -17,6 +17,7 @@ import Savings from './pages/Savings'
 import Settings from './pages/Settings'
 import Navbar from './components/Navbar'
 import "./styles/global.css"
+import SavingsInput from './pages/SavingsInput';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/settings" element={<Settings/>} />
+            <Route path='/savings/input' element={<SavingsInput/>}/>
           </Routes>                    
           
       </div>

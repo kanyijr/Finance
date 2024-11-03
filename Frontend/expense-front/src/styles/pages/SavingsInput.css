@@ -1,0 +1,57 @@
+/* SavingsInput.css */
+.savings-input {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2em;
+  }
+  
+  .savings-input__title {
+    font-size: 24px;
+    color: #3b3b3b;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .savings-input__form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .savings-input__field {
+    margin-bottom: 15px;
+  }
+  
+  .savings-input__label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .savings-input__input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .savings-input__button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .savings-input__button:hover {
+    background-color: #45a049;
+  }
+  
