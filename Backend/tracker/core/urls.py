@@ -14,5 +14,6 @@ urlpatterns = [
     path("api/incomes/", views.incomes),
     path("api/categories/", views.get_categories, name="get_categories"),
     path("api/expenses/", views.expenses, name="expenses"),
-    path("api/financial-data/", views.get_user_financial_data, name="get_financial_data")
+    path("api/financial-data/", views.get_user_financial_data, name="get_financial_data"),
+    path("api/savings-goal/", views.create_saving_account, name="create_savings")
 ]

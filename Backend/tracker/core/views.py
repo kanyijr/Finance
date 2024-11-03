@@ -168,29 +168,34 @@ def get_user_financial_data(request):
             date__year=current_date.year,
             date__month=current_date.month
         ).aggregate(Sum('amount'))['amount__sum'] or 0
+
         print("Expense", total_expense)
-        incomes = models.Income.objects.get(user=userObj)
-        print(incomes)
+      
+
         total_income = models.Income.objects.filter(
             user = userObj,
             date__year = current_date.year,
             date__month = current_date.month
         ).aggregate(Sum("amount"))["amount__sum"] or 0
+
         print("income",total_income)
-        # expenses = models.Expense.objects.filter(user=user)
-        # income = models.Income.objects.filter(user=user)
-        # savings_accounts = models.SavingAccount.objects.filter(user=user)
 
-        # # Serialize the data
-        # expenses_serialized = models.ExpenseSerializer(expenses, many=True)
-        # income_serialized = models.IncomeSerializer(income, many=True)
-        # savings_accounts_serialized = models.SavingAccountSerializer(savings_accounts, many=True)
-
+      
+        # Create a Q object for filtering
+        date_filter = Q(savings_account__end_date__year=current_date.year) | Q(savings_account__end_date__month=current_date.month)
+        savings = models.Saving.objects.filter(
+            date_filter,
+            savings_account__user=userObj,
+            
+        ).aggregate(total_deposit=Sum('deposit_amount'))['total_deposit'] or 0
+                
+        
         # Construct the response data
         data = {
             "expenses": total_expense,
             "income": total_income,
-            "savings_accounts": 0,
+            "savings": savings,
+            
         }
 
         return Response(data, status=status.HTTP_200_OK)
@@ -198,3 +203,36 @@ def get_user_financial_data(request):
         # Return an error response if something goes wrong
         print("Error", e)
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+@api_view(['POST'])
+def create_saving_account(request):
+    data = request.data
+    user = data.get("userName")
+    user = User.objects.get(username=user)  # The authenticated user
+
+    # Validate incoming data
+    savings_title = data.get('savings_title')
+    goal_amount = data.get('goal_amount')
+    start_date = data.get('start_date')
+    end_date = data.get('end_date')
+
+    if not all([savings_title, goal_amount, start_date, end_date]):
+        return Response(
+            {"error": "All fields except description are required."},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    # Create the SavingAccount instance
+    saving_account = models.SavingAccount.objects.create(
+        savings_title=savings_title,
+        goal_amount=goal_amount,
+        start_date=start_date,
+        end_date=end_date,
+        user=user
+    )
+
+    # Serialize and return the new instance
+    serializer = serializers.SavingAccountSerializer(saving_account)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)

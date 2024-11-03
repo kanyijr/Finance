@@ -65,14 +65,14 @@ class SavingAccount(models.Model):
     savings_id = models.AutoField(primary_key=True)
     savings_title = models.CharField(max_length=200, null=True)
     goal_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    # current_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    # current_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     start_date = models.DateField()
     end_date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     class Meta: 
         verbose_name = "Savings Account"
-
+    
     @property
     def current_amount(self):
        total = self.savings.aggregate(total=models.Sum('deposit_amount'))['total'] or 0
