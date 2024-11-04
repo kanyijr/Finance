@@ -68,10 +68,9 @@ const ContextProvider = ({children}) => {
     }
     useEffect(()=>{
       handleIfLoggedIn()
-    }, [])
-    useEffect(()=>{
       fetchUserFinancialData()
     }, [])
+    
   
     return (
     <Context.Provider 

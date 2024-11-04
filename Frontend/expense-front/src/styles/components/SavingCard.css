@@ -84,3 +84,68 @@
     color: rgba(94, 91, 91, 1);
     font-size: .8rem;
 }
+
+.SavingCard__modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .u-d-hidden {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+    pointer-events: none;
+  }
+  
+
+
+  .SavingCard__modal label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #4CAF50; /* Emerald accent */
+  }
+  
+  .SavingCard__modal input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #4CAF50; /* Emerald accent */
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .SavingCard__modal input[type="text"]:focus {
+    border-color: #673AB7; /* Purple accent */
+  }
+  
+  .SavingCard__modal input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background: #2196F3; /* Blue accent */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .SavingCard__modal input[type="submit"]:hover {
+    background: #1976D2; /* Darker blue for hover effect */
+  }
+  
