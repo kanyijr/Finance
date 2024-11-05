@@ -47,10 +47,10 @@ const Home = () => {
         <h1 className='Home__title'>Dashboard</h1>
         <div className='Home__metrics u-d-flex'>
 
-            <Metric bgColor={"emerald"} value={userFinancialData?userFinancialData.income:0} title={"Total Income"} icon={"bi-cash-coin"} dest={"/income/list"} prefix={"Ksh. "}/>
+            <Metric bgColor={"emerald"} value={userFinancialData?userFinancialData.income:0} title={"Total Income"} icon={"bi-cash-coin"} dest={"/transactions"} prefix={"Ksh. "}/>
        
        
-            <Metric bgColor={"red"} value={userFinancialData?userFinancialData.expenses:0} title={"Total Expenses"} icon={"bi-graph-down-arrow"} dest={"expenses/list"} prefix={"Ksh. "}/>
+            <Metric bgColor={"red"} value={userFinancialData?userFinancialData.expenses:0} title={"Total Expenses"} icon={"bi-graph-down-arrow"} dest={"/transactions"} prefix={"Ksh. "}/>
       
 
             <Metric bgColor={"blue"} value={userFinancialData?userFinancialData.savings:0} title={"Total Savings"} icon={"bi-briefcase"} dest={"/savings"} prefix={"Ksh. "}/>

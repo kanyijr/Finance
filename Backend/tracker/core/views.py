@@ -194,8 +194,7 @@ def get_user_financial_data(request):
         data = {
             "expenses": total_expense,
             "income": total_income,
-            "savings": savings,
-            
+            "savings": savings,            
         }
 
         return Response(data, status=status.HTTP_200_OK)
@@ -327,4 +326,24 @@ def add_funds(request):
     except Exception as e:
         print("Error while adding funds: ", e)
         return Response({"message":"Internal Server error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+@api_view(["GET"])
+def transactions(request):
+    '''
+    return value is a list of json objects i.e
+    {
+    "transactions":[
+        transaction, transaction ...
+    ]
+    }
+    
+    TRANSACTION
+    {
+        "type":string,
+        "amount":float,
+        "category":string,
+        "date":date,
+        "description":string
+    }
+    '''
     

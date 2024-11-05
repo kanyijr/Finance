@@ -42,3 +42,7 @@
     background-color: var(--color-blue);
     flex: 1;
 }
+.purple{
+    background-color: var(--color-purple);
+    flex: 1;
+}

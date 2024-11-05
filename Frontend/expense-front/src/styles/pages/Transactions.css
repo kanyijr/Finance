@@ -1,0 +1,158 @@
+.Transactions{
+    min-height: 100vh;
+    min-width: 100vw;
+    background: linear-gradient(to right, rgba(16, 185, 129, 0.15), rgba(255, 255, 255, 1));
+    font-family: "Poppins", sans-serif;
+}
+.Transactions__container{
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2em;
+}
+.Transactions__header{
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+.Transactions__header-btns{
+    display: flex;
+    gap: 1em;
+}
+.Transactions__header-btns-btn{
+    padding: .8em 1em;
+    display: flex;
+    gap: 1em;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    border: none;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    border-radius: .5rem;
+    font-size: 1rem;
+}
+
+.Transactions__header-btns-btn:first-of-type{
+    background-color: var(--color-emerald);
+    color: white;
+}
+.Transactions__header-btns-btn:first-of-type:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+.Transactions__header-btns-btn:last-of-type{
+    background-color: var(--color-blue);
+    color: white;
+}
+.Transactions__header-btns-btn:last-of-type:hover{
+    background-color: black;
+    border: 1px solid white;    
+}
+.Transactions__title{
+    background: linear-gradient(to right, rgb(3, 139, 60), rgb(26, 10, 245));
+    background-clip: text;
+    -webkit-background-clip: text; /* For webkit-based browsers (like Chrome, Safari) */
+    color: transparent; 
+    font-size: 1.5rem;
+}
+.Transactions__cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 2em;
+}
+
+
+/* Table styles */
+.Transaction__table{
+    background-color: white;
+    padding: 1em;
+    border-radius: .6rem;
+    font-family: "Poppins", sans-serif;
+    box-shadow: 4px 5px 10px rgba(0,0,0,0.1);
+}
+.Transaction__table-header{
+    display: flex;
+    justify-content: space-between;
+}
+.Transaction__table-header-icons i{
+    margin-right: .2em;
+}
+.Transaction__table-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+/* Table header */
+.Transaction__table-table th {
+    padding: 12px 16px;
+    text-align: left;
+    color: #6b7280;
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Table body */
+.Transaction__table-table td {
+    padding: 16px;
+    color: #1a1a1a;
+    font-size: 14px;
+}
+
+.Transaction__table-table tr {
+    border-bottom: 1px solid #f3f4f6;
+    cursor: pointer;
+}
+
+.Transaction__table-table tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Transaction type badges */
+.transaction-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.type-expense {
+    background-color: #EEF2FF;
+    color: #4F46E5;
+}
+
+.type-income {
+    background-color: #ECFDF5;
+    color: #059669;
+}
+
+/* Amount column */
+.amount-expense {
+    color: #4F46E5;
+    font-weight: 500;
+}
+
+.amount-income {
+    color: #059669;
+    font-weight: 500;
+}
+
+/* Category and description */
+.category {
+    color: #374151;
+}
+
+.description {
+    color: #6b7280;
+}
+
+/* Date column */
+.date {
+    color: #6b7280;
+}
