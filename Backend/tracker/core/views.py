@@ -236,3 +236,95 @@ def create_saving_account(request):
     # Serialize and return the new instance
     serializer = serializers.SavingAccountSerializer(saving_account)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(["GET"])
+def fetch_savings(request):
+    try:
+        print("request received")
+        username = request.GET.get("user")
+        print(username)
+        if not username:
+            raise Exception("Bad")
+        
+        user = User.objects.get(username=username)
+        #query the user savings data
+        savings = models.SavingAccount.objects.filter(user=user)
+        total = 0
+        for saving in savings:
+            total += saving.current_amount
+        '''
+        The savings accounts data structure
+        {
+            'total':float,
+            'num_accounts':int,
+            'accounts':[
+                account,
+                account
+            ]
+        }
+
+        The 'account' data structure
+        {
+            account_id:int,
+            title: string,
+            start_date:date,
+            end_date:date,
+            current_amount:float,
+            goal:float
+        }
+        '''
+        savings_data = {
+            "total":total,
+            "num_accounts":len(savings),
+            "accounts":[]
+        }
+        # pushing the accounts to the list
+        for saving in savings:
+            saving_data = dict({})
+            saving_data["account_id"] = saving.savings_id
+            saving_data["title"] = saving.savings_title
+            saving_data["start_date"] = saving.start_date
+            saving_data["end_date"] = saving.end_date
+            saving_data["current_amount"] = saving.current_amount
+            saving_data["goal"] = saving.goal_amount
+            savings_data["accounts"].append(saving_data)
+        
+        return Response(savings_data, status=status.HTTP_200_OK)
+    except Exception as e:
+        print("Error while fetching savings data: ", e)
+        return Response({"message":"Internal server error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+@api_view(["POST", "PUT"])
+def add_funds(request):
+    try:
+        if request.method=="POST":
+            print("request received for adding funds")
+            print(request.data)
+            data = request.data
+            user = data["user"]
+            amount = data["amount"]
+            user = User.objects.get(username=user)
+            if not user:
+                raise Exception("user not found")
+            account = models.SavingAccount.objects.get(pk=data["id"], user=user)
+            # create saving instance
+            saving = models.Saving.objects.create(savings_account = account, deposit_amount = amount)
+            return Response({"message":"Funds added"}, status=status.HTTP_200_OK)
+        
+        #changing account goal
+        else:
+            print("request for changing goal")
+            data = request.data
+            user = data["user"]
+            amount = data["amount"]
+            user = User.objects.get(username=user)
+            if not user:
+                raise Exception("user not found")
+            account = models.SavingAccount.objects.get(pk=data["id"], user=user)
+            account.goal_amount = amount
+            account.save()
+            return Response({"message":"goal changed"}, status=status.HTTP_200_OK)
+    except Exception as e:
+        print("Error while adding funds: ", e)
+        return Response({"message":"Internal Server error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    

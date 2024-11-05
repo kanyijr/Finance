@@ -11,6 +11,7 @@ const SavingCard = ({id,title, startDate, endDate, currentAmount, goal}) => {
   const [fundsToAdd, setFundsToAdd] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const {userName} = useContext(Context)
+  const [task, setTask] = useState("add")
   const history = useNavigate()
 
   const convertToString = (number) => {
@@ -26,26 +27,43 @@ const SavingCard = ({id,title, startDate, endDate, currentAmount, goal}) => {
   }
   const handleModalSubmit = async (e)=>{
     e.preventDefault()
-    var response = await fetch("http://localhost:8000/api/users/saving-accounts/update/",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({id:accountId, user:userName, amount:fundsToAdd})
-    })
-    let data = await response.json()
-    if(!response.ok){
-      alert(data.message)
+    if(task==="add"){
+      let  response = await fetch("http://localhost:8000/api/users/saving-accounts/update/",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({id:accountId, user:userName, amount:fundsToAdd})
+      })
+      let data = await response.json()
+      if(!response.ok){
+        alert(data.message)
+      }else{
+        alert(data.message)
+      }
+      window.location.reload()
     }else{
-      alert(data.message)
+      let response = await fetch("http://localhost:8000/api/users/saving-accounts/update/",{
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({id:accountId, user:userName, amount:fundsToAdd})
+      })
+      let data = await response.json()
+      if(!response.ok){
+        alert(data.message)
+      }else{
+        alert(data.message)
+      }
+      window.location.reload()
     }
-    window.location.reload()
 
   }
   useEffect(()=>{
-    if(currentAmount && goal){
+    if(goal){
 
-      setWidth((currentAmount/goal) * 100)
+      setWidth(Math.round((currentAmount/goal) * 100))
      
       setAmount(convertToString(currentAmount))
       setAmountGoal(convertToString(goal))
@@ -64,7 +82,7 @@ const SavingCard = ({id,title, startDate, endDate, currentAmount, goal}) => {
       <div className='SavingCard__body'>
         <div className='SavingCard__body-goal-amount'>
           <span>Ksh. {amount}</span>
-          <span>Ksh. {goal}</span>
+          <span>Ksh. {amountGoal}</span>
         </div>
         <div className='SavingCard__body-progress'>
           <div className='SavingCard__body-progress-bar' style={{width:`${width}%`}}></div>
@@ -74,7 +92,7 @@ const SavingCard = ({id,title, startDate, endDate, currentAmount, goal}) => {
           <button className='SavingCard__body-cta-btn' onClick={()=>{setIsModalOpen(true)}}>
             Add Funds
           </button>
-          <button className='SavingCard__body-cta-btn'>
+          <button className='SavingCard__body-cta-btn' onClick={()=>{setTask("change"); setIsModalOpen(true)}}>
             Edit Goal
           </button>
         </div>

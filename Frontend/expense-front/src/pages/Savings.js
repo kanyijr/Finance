@@ -51,7 +51,7 @@ const Savings = () => {
           <Metric title={"Active Goals"} icon={"bi-wallet"} value={savingsData?savingsData.num_accounts:0} bgColor={"bluegreen"} dest={""} prefix={""}/>
         </div>
         <div className='Savings__funds'>
-            {savingsData?savingsData.accounts.map((account, index)=><SavingCard title={account.title} id={account.account_id} startDate={account.start_date} endDate={account.end_date} currentAmount={account.current_amount} goal={account.goal}/>):<SavingCard/>}
+            {savingsData?savingsData.accounts.map((account, index)=><SavingCard title={account.title} id={account.account_id} startDate={account.start_date} endDate={account.end_date} currentAmount={account.current_amount} goal={account.goal} key={index}/>):<SavingCard/>}
         </div>
       </div>
     </div>

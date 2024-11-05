@@ -27,7 +27,7 @@ class Category(models.Model):
 class Expense(models.Model):
     expense_id = models.AutoField(primary_key=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateField()
+    date = models.DateField(auto_now_add=True)
     description = models.TextField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -82,7 +82,7 @@ class SavingAccount(models.Model):
 class Saving(models.Model):
     savings_account = models.ForeignKey(SavingAccount, on_delete=models.CASCADE, related_name="savings")
     deposit_amount = models.DecimalField(decimal_places=2, max_digits=12)
-    deposit_date = models.DateField()
+    deposit_date = models.DateField(auto_now_add=True)
 
     class Meta:
         ordering = ["-deposit_date"]

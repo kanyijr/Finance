@@ -18,6 +18,7 @@ import Settings from './pages/Settings'
 import Navbar from './components/Navbar'
 import "./styles/global.css"
 import SavingsInput from './pages/SavingsInput';
+import Transactions from './pages/Transactions';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
             <Route path="/register" element={<Register/>} />
             <Route path="/settings" element={<Settings/>} />
             <Route path='/savings/input' element={<SavingsInput/>}/>
+            <Route path='/transactions' element={<Transactions/>}/>
           </Routes>                    
           
       </div>
