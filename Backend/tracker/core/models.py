@@ -59,7 +59,8 @@ class Income(models.Model):
 
     def __str__(self):
         return f"Income for {self.user.username} on {self.date}"
-
+    class Meta: 
+        ordering = ["-date"]
 
 class SavingAccount(models.Model):
     savings_id = models.AutoField(primary_key=True)

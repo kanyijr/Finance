@@ -1,15 +1,46 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import "../styles/pages/Transactions.css"
 import Context from '../utils/Context'
 import Metric from '../components/Metric'
 import {useNavigate} from 'react-router-dom'
 
 const Transactions = () => {
-  const {userFinancialData, fetchUserFinancialData} = useContext(Context)
+  const {userFinancialData, fetchUserFinancialData, userName} = useContext(Context)
+  const [transactions, setTransactions] = useState([])
   const history = useNavigate()
+
+  const convertToString = (number) => {
+    if (typeof number !== 'number') {
+      throw new Error('Input must be a number');
+    }
+    
+    // Convert the number to a string and format with commas
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  const fetchTransactionHistory = async ()=>{
+        let response = await fetch(`http://localhost:8000/api/transactions/?user=${userName}`, {
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        var data = await response.json()
+        if(!response.ok){
+            alert(data.message)
+        }else{
+            console.log(data.transactions)
+            for(let transaction of data.transactions){
+                transaction.amount = convertToString(transaction.amount)
+            }
+            setTransactions(data.transactions)
+        }
+  }
   useEffect(()=>{
         fetchUserFinancialData()
-  }, [])
+        if(userName){
+            fetchTransactionHistory()
+        }
+  }, [userName])
   return (
     <div className='Transactions'>
         <div className='Transactions__container'>
@@ -51,30 +82,38 @@ const Transactions = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <span className="transaction-type type-expense">
-                                    <i className="bi bi-arrow-down-right"></i>
-                                    Expense
-                                </span>
-                            </td>
-                            <td className="amount-expense">Ksh. 50.00</td>
-                            <td className="category">Food</td>
-                            <td className="date">2024-11-01</td>
-                            <td className="description">Grocery shopping</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span className="transaction-type type-income">
-                                    <i className="bi bi-arrow-up-right"></i>
-                                    Income
-                                </span>
-                            </td>
-                            <td className="amount-income">Ksh.30,000.00</td>
-                            <td className="category">Salary</td>
-                            <td className="date">2024-11-01</td>
-                            <td className="description">Monthly salary</td>
-                        </tr>
+                        {
+
+                            transactions?transactions.map((transaction, index)=>(
+                                        transaction.type=="Expense"?
+                                        <tr>
+                                        <td>
+                                            <span className="transaction-type type-expense">
+                                                <i className="bi bi-arrow-down-right"></i>
+                                                Expense
+                                            </span>
+                                        </td>
+                                        <td className="amount-expense">Ksh. {transaction.amount}</td>
+                                        <td className="category">{transaction.category}</td>
+                                        <td className="date">{transaction.date}</td>
+                                        <td className="description">{transaction.description}</td>
+                                    </tr> :
+                                     <tr>
+                                     <td>
+                                         <span className="transaction-type type-income">
+                                             <i className="bi bi-arrow-up-right"></i>
+                                             Income
+                                         </span>
+                                     </td>
+                                     <td className="amount-income">Ksh.{transaction.amount}</td>
+                                     <td className="category">xxxx</td>
+                                     <td className="date">{transaction.date}</td>
+                                     <td className="description">{transaction.description}</td>
+                                 </tr>
+
+                            )):<></>
+                        }
+                       
                     </tbody>
 
                 </table>

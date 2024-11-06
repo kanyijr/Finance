@@ -327,23 +327,73 @@ def add_funds(request):
         print("Error while adding funds: ", e)
         return Response({"message":"Internal Server error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from . import models
+
 @api_view(["GET"])
 def transactions(request):
     '''
-    return value is a list of json objects i.e
+    Return a list of JSON objects for transactions (income and expenses), structured as:
     {
-    "transactions":[
-        transaction, transaction ...
-    ]
-    }
-    
-    TRANSACTION
-    {
-        "type":string,
-        "amount":float,
-        "category":string,
-        "date":date,
-        "description":string
+        "transactions": [
+            {
+                "type": "Income" or "Expense",
+                "amount": float,
+                "category": string,
+                "date": date,
+                "description": string
+            },
+            ...
+        ]
     }
     '''
+    try:
+        print("Request for transactions received")
+        
+        # Get the user from the request
+        username = request.GET.get("user")
+        if not username:
+            return Response({"message": "User not provided"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Try to get the user object
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response({"message": "User does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Get income and expense transactions for the user
+        income_transactions = models.Income.objects.filter(user=user)
+        expense_transactions = models.Expense.objects.filter(user=user)
+        
+        # Combine and format transactions
+        transactions_list = []
+
+        # Process income transactions
+        for income in income_transactions:
+            transactions_list.append({
+                "type": "Income",
+                "amount": float(income.amount),
+                "date": income.date,
+                "description": income.description
+            })
+
+        # Process expense transactions
+        for expense in expense_transactions:
+            transactions_list.append({
+                "type": "Expense",
+                "amount": float(expense.amount),
+                "category": expense.category.name if expense.category else "None",
+                "date": expense.date,
+                "description": expense.description
+            })
+
+        # Sort the transactions by date (ascending order)
+        transactions_list.sort(key=lambda x: x["date"], reverse=True)
+
+        return Response({"transactions": transactions_list}, status=status.HTTP_200_OK)
     
+    except Exception as e:
+        print(f"Error: {e}")
+        return Response({"message": "Internal Server Error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
