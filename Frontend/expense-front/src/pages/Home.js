@@ -77,7 +77,7 @@ const Home = () => {
 
 
         </div>
-        <TrendChart expenseData={expenseData} />
+        <TrendChart expenseData={userFinancialData?userFinancialData.expense_list:expenseData} />
    
      
 

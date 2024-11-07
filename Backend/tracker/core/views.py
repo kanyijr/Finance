@@ -189,12 +189,17 @@ def get_user_financial_data(request):
             
         ).aggregate(total_deposit=Sum('deposit_amount'))['total_deposit'] or 0
                 
-        
+        expenses = models.Expense.objects.filter(
+            user=userObj,
+            date__month = current_date.month
+        ) 
+        serialized_expenses = serializers.ExpenseSerializer(expenses, many=True)
         # Construct the response data
         data = {
             "expenses": total_expense,
             "income": total_income,
-            "savings": savings,            
+            "savings": savings,   
+            "expense_list":serialized_expenses.data        
         }
 
         return Response(data, status=status.HTTP_200_OK)

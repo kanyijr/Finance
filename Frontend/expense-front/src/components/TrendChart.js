@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,10 +23,23 @@ ChartJS.register(
   Legend
 );
 
-const TrendChart = () => {
+const TrendChart = ({expenseData}) => {
   // Sample data - replace with your actual data
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-  const expenses = [1200, 1400, 1100, 1600, 13000, 15000];
+  const monthss = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  const expensess = [1200, 1400, 1100, 1600, 13000, 15000];
+  const [months, setMonths] = useState([])
+  const [expenses, setExpenses] = useState([])
+  console.log("Expense data"+ expenseData)
+  const initData = (obj)=>{
+    setExpenses([...expenses, obj.amount]);
+    setMonths([...months, obj.date])
+    
+  }
+  useEffect(()=>{
+    expenseData.map((obj, index)=>(
+            initData(obj)
+    ))
+  }, [expenseData])
 
   const options = {
     responsive: true,
@@ -91,45 +104,3 @@ const TrendChart = () => {
 };
 
 export default TrendChart;
-// import React from 'react';
-// import { Line } from 'react-chartjs-2';
-// import 'chart.js/auto';
-
-// const TrendChart = ({ expenseData }) => {
-//   // Prepare the data for the chart
-//   const data = {
-//     labels: expenseData.map(item => item.date), // Dates for the x-axis
-//     datasets: [
-//       {
-//         label: 'Expenses',
-//         data: expenseData.map(item => item.amount), // Expense amounts for the y-axis
-//         fill: false,
-//         backgroundColor: 'rgba(75,192,192,0.6)',
-//         borderColor: 'rgba(75,192,192,1)',
-//         tension: 0.1
-//       },
-//     ],
-//   };
-
-//   const options = {
-//     scales: {
-//       x: {
-//         type: 'time',
-//         time: {
-//           unit: 'month' // Adjust to your data granularity (day, month, etc.)
-//         }
-//       },
-//       y: {
-//         beginAtZero: true
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className="ExpenseTrendChart">
-//       <Line data={data} options={options} />
-//     </div>
-//   );
-// };
-
-// export default TrendChart;
